@@ -60,7 +60,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const users = persisted.get('users') || defaults.users;
 
     const foundUser = users.find(
-      (u: IUser) => u.email === email && u.password === password,
+      (u: IUser) =>
+        u.email.trim().toLowerCase() === email.trim().toLowerCase() &&
+        u.password === password,
     );
     if (foundUser) {
       setUser(foundUser);

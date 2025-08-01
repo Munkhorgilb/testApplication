@@ -136,13 +136,11 @@ const Import = () => {
             style={styles.lottie}
             autoPlay
           />
-          {__DEV__ && (
-            <Button onPress={createTestFile} type="primaryOutline">
-              <TextView bold style={[s.ph10, s.pv6]}>
-                Тест файл нэмэх
-              </TextView>
-            </Button>
-          )}
+          <Button onPress={createTestFile} type="primaryOutline">
+            <TextView bold style={[s.ph10, s.pv6]}>
+              Тест файл нэмэх
+            </TextView>
+          </Button>
           <View style={[s.row, s.mt20]}>
             <Button onPress={downloadDefaultFile} style={[s.mr10]}>
               <TextView color={colors.white} bold style={[s.ph10, s.pv6]}>
