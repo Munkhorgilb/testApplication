@@ -16,11 +16,13 @@ import { useModalControls } from '#/modal/ModalProvider';
 import { useApp } from '#/provider/AppProvider';
 import { v4 as uuidv4 } from 'uuid';
 import { useAlert } from '#/provider/AlertProvider';
+import { useNavigation } from '@react-navigation/native';
 
 const Cart = () => {
   const { cartItems, user, setCartItems } = useAuth();
   const { orders, setOrders } = useApp();
   const alert = useAlert();
+  const navigation = useNavigation<any>();
 
   const listEmpty = () => {
     return (
@@ -51,10 +53,10 @@ const Cart = () => {
       createdAt: new Date().toISOString(),
     };
     const newOrders = [...orders, newItem];
-    console.log(newOrders, '+++');
     setOrders(newOrders);
     alert.success('Захиалга амжилттай хийгдлээ');
     setCartItems([]);
+    navigation.navigate('MyOrders');
   };
 
   return (

@@ -1702,6 +1702,11 @@
     prompts "^2.4.2"
     semver "^7.5.2"
 
+"@react-native-documents/picker@^10.1.5":
+  version "10.1.5"
+  resolved "https://registry.yarnpkg.com/@react-native-documents/picker/-/picker-10.1.5.tgz#3b9cd338210e70602a30d739f2c3ee919177c6a9"
+  integrity sha512-ajn55rNyxUqbQbz5gmm9gYFI1ifHBmMLH4jVWViA7IFqk1EiEM+pJcpoHizWr5hetR6tzQsaoI4vzCNv/WyA7w==
+
 "@react-native-vector-icons/common@^12.2.0":
   version "12.2.0"
   resolved "https://registry.yarnpkg.com/@react-native-vector-icons/common/-/common-12.2.0.tgz#9d42cddd6dc87ba1f7daf7386150034b0ed8caa7"
@@ -6297,12 +6302,10 @@ react-native-bootsplash@^6.3.10:
     ts-dedent "^2.2.0"
     xml-formatter "^3.6.5"
 
-react-native-document-picker@^9.3.1:
-  version "9.3.1"
-  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-9.3.1.tgz#f2c33237a906fd0893130e0605c8f18a3aef1605"
-  integrity sha512-Vcofv9wfB0j67zawFjfq9WQPMMzXxOZL9kBmvWDpjVuEcVK73ndRmlXHlkeFl5ZHVsv4Zb6oZYhqm9u5omJOPA==
-  dependencies:
-    invariant "^2.2.4"
+react-native-edge-to-edge@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/react-native-edge-to-edge/-/react-native-edge-to-edge-1.6.2.tgz#5b93632b9afa8e7afaca1c0508807664820465fe"
+  integrity sha512-koEF6WRAfdGNelXlP7NtHrQhFGtplwciYNWLHOCTCk0Thc7dlxtqxHRYSA5vPJgWOEkVBFqxcoOqKwAtqOmLNw==
 
 react-native-file-viewer@^2.1.5:
   version "2.1.5"

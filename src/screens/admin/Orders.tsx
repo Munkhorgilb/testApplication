@@ -1,8 +1,7 @@
 /* eslint-disable react/no-unstable-nested-components */
-import { View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import React from 'react';
 import { s } from '#/utils/styles';
-import { LegendList } from '@legendapp/list';
 import OrderItem from '#/view/OrderItem';
 import Divider from '#/components/Divider';
 import Empty from '#/components/Empty';
@@ -12,10 +11,9 @@ const Orders = () => {
   const { orders } = useApp();
   return (
     <View style={[s.container]}>
-      <LegendList
+      <FlatList
         data={orders}
         contentContainerStyle={[s.flexGrow1, s.mt10]}
-        recycleItems
         renderItem={({ item }) => <OrderItem order={item} />}
         // keyExtractor={item => item?.id.toString()}
         ItemSeparatorComponent={() => <Divider />}

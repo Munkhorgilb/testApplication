@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import colors from '#/utils/colors';
 
-const Divider = ({style}: {style?: StyleProp<ViewStyle>}) => {
+const Divider = ({ style }: { style?: StyleProp<ViewStyle> }) => {
   return <View style={[styles.light, style]} />;
 };
 

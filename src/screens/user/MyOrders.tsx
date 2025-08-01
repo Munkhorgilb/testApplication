@@ -3,12 +3,12 @@ import React from 'react';
 import { useApp } from '#/provider/AppProvider';
 import { useAuth } from '#/provider/AuthProvider';
 import { s } from '#/utils/styles';
-import { LegendList } from '@legendapp/list';
 import OrderItem from '#/view/OrderItem';
 import Empty from '#/components/Empty';
 import Divider from '#/components/Divider';
 import BackButton from '#/components/BackButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { FlatList } from 'react-native';
 
 const MyOrders = () => {
   const { user } = useAuth();
@@ -19,10 +19,10 @@ const MyOrders = () => {
   return (
     <SafeAreaView style={[s.container]}>
       <BackButton />
-      <LegendList
+      <FlatList
         data={myOrders}
         contentContainerStyle={[s.flexGrow1, s.mt10]}
-        recycleItems
+        // recycleItems
         renderItem={({ item }) => <OrderItem order={item} />}
         ItemSeparatorComponent={() => <Divider />}
         ListEmptyComponent={<Empty text={'Та захиалга хийгээгүй байна.'} />}

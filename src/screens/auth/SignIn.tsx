@@ -24,8 +24,8 @@ const SignIn = () => {
   const passwordRef = useRef<TextInput>(null);
 
   const [variables, setVariables] = useState({
-    email: 'admin@example.com',
-    password: 'Admin@123',
+    email: '',
+    password: '',
   });
   const [showPassword, setShowPassword] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -117,7 +117,7 @@ const SignIn = () => {
         </Button>
         <View style={s.flex1} />
         <Pressable
-          style={[s.row, s.justifyCenter]}
+          style={[s.row, s.justifyCenter, s.mb10]}
           onPress={() => {
             navigation.navigate('SignUp');
           }}
@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderColor: colors.border,
     borderWidth: 0.5,
+    color: colors.black,
   },
   button: {
     alignItems: 'center',

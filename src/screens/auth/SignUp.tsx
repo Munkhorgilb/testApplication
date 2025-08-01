@@ -27,9 +27,9 @@ const SignUp = () => {
   const [loading, setLoading] = useState(false);
 
   const [variables, setVariables] = useState({
-    name: 'Munkh-orgil',
-    email: 'monkhorgilbayarbaatar@gmail.com',
-    password: 'Admin@123',
+    name: '',
+    email: '',
+    password: '',
   });
 
   const { register } = useAuth();
@@ -152,6 +152,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderColor: colors.border,
     borderWidth: 0.5,
+    color: colors.black,
   },
   button: {
     alignItems: 'center',

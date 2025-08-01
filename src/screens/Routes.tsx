@@ -21,6 +21,8 @@ import Import from './Import';
 import { ModalsContainer } from '#/modal/Modal';
 import ProductDetail from './admin/ProductDetail';
 import MyOrders from './user/MyOrders';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { isIOS } from '#/utils/utils';
 
 type RootStackParamList = {
   Home: undefined;
@@ -64,8 +66,13 @@ const bottomLabelStyle = {
 };
 
 export const AdminTabs = () => {
+  const insets = useSafeAreaInsets();
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      safeAreaInsets={{
+        bottom: !isIOS ? insets.bottom + 12 : insets.bottom,
+      }}
+    >
       <Tab.Screen
         name="orders"
         component={Orders}
@@ -75,6 +82,7 @@ export const AdminTabs = () => {
           tabBarActiveTintColor: colors.primary,
           tabBarLabelStyle: bottomLabelStyle,
           headerTitle: 'Захиалга',
+          headerTitleAlign: 'center',
         }}
       />
       <Tab.Screen
@@ -86,6 +94,7 @@ export const AdminTabs = () => {
           tabBarActiveTintColor: colors.primary,
           tabBarLabelStyle: bottomLabelStyle,
           headerTitle: 'Хэрэглэгчид',
+          headerTitleAlign: 'center',
         }}
       />
       <Tab.Screen
@@ -97,6 +106,7 @@ export const AdminTabs = () => {
           tabBarActiveTintColor: colors.primary,
           tabBarLabelStyle: bottomLabelStyle,
           headerTitle: 'Бараанууд',
+          headerTitleAlign: 'center',
         }}
       />
       <Tab.Screen
@@ -108,6 +118,7 @@ export const AdminTabs = () => {
           tabBarActiveTintColor: colors.primary,
           tabBarLabelStyle: bottomLabelStyle,
           headerTitle: 'Тохиргоо',
+          headerTitleAlign: 'center',
         }}
       />
     </Tab.Navigator>
@@ -116,8 +127,13 @@ export const AdminTabs = () => {
 
 export const UserTabs = () => {
   const { cartItems, wishlistItems } = useAuth();
+  const insets = useSafeAreaInsets();
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      safeAreaInsets={{
+        bottom: !isIOS ? insets.bottom + 12 : insets.bottom,
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={UserHome}
@@ -127,6 +143,7 @@ export const UserTabs = () => {
           tabBarActiveTintColor: colors.primary,
           tabBarLabelStyle: bottomLabelStyle,
           headerTitle: 'Нүүр',
+          headerTitleAlign: 'center',
         }}
       />
       <Tab.Screen
@@ -138,6 +155,7 @@ export const UserTabs = () => {
           tabBarActiveTintColor: colors.primary,
           tabBarLabelStyle: bottomLabelStyle,
           headerTitle: 'Хадгалсан',
+          headerTitleAlign: 'center',
           tabBarBadge:
             wishlistItems?.length > 0 ? wishlistItems?.length : undefined,
         }}
@@ -151,6 +169,7 @@ export const UserTabs = () => {
           tabBarActiveTintColor: colors.primary,
           tabBarLabelStyle: bottomLabelStyle,
           headerTitle: 'Сагс',
+          headerTitleAlign: 'center',
           tabBarBadge: cartItems?.length > 0 ? cartItems?.length : undefined,
         }}
       />
@@ -163,6 +182,7 @@ export const UserTabs = () => {
           tabBarActiveTintColor: colors.primary,
           tabBarLabelStyle: bottomLabelStyle,
           headerTitle: 'Тохиргоо',
+          headerTitleAlign: 'center',
         }}
       />
     </Tab.Navigator>

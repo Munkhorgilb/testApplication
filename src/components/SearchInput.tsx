@@ -74,6 +74,7 @@ export function SearchInput({
           autoCorrect={false}
           autoCapitalize="none"
           selectionColor={colors.primary}
+          placeholderTextColor={colors.disabled}
           {...props}
         />
         {query && (
@@ -115,6 +116,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     height: 25,
     paddingVertical: 0,
+    color: colors.black,
   },
   cancelBtn: {
     paddingLeft: 10,

@@ -1,4 +1,4 @@
-import { Keyboard, SafeAreaView, StyleSheet, View } from 'react-native';
+import { Keyboard, StyleSheet, View } from 'react-native';
 import React, { useRef, useState } from 'react';
 import BackButton from '#/components/BackButton';
 import { s } from '#/utils/styles';
@@ -10,6 +10,7 @@ import { Button } from '#/components/Button';
 import { useApp } from '#/provider/AppProvider';
 import { useNavigation } from '@react-navigation/native';
 import { useAlert } from '#/provider/AlertProvider';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const numberWithCommas = (number: number) => {
   if (!number) {
@@ -24,8 +25,6 @@ const ProductDetail = ({ route }: any) => {
   const alert = useAlert();
   const navigation = useNavigation();
   const { products, setProducts } = useApp();
-
-  console.log(product?.code);
 
   const nameRef = useRef<TextInput>(null);
   const codeRef = useRef<TextInput>(null);
@@ -148,6 +147,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderColor: colors.border,
     borderWidth: 0.5,
+    color: colors.black,
   },
   button: {
     alignItems: 'center',
@@ -157,5 +157,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     flexDirection: 'row',
     marginTop: 20,
+    marginBottom: 10,
   },
 });

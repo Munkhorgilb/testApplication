@@ -1,4 +1,4 @@
-import { Alert, StyleSheet, View } from 'react-native';
+import { Linking, StyleSheet, View } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { s } from '#/utils/styles';
@@ -15,7 +15,6 @@ import {
 import TextView from '#/components/TextView';
 import { Button } from '#/components/Button';
 import colors from '#/utils/colors';
-import DocumentPicker from 'react-native-document-picker';
 import RNFS from 'react-native-fs';
 import { useAlert } from '#/provider/AlertProvider';
 import dayjs from 'dayjs';
@@ -25,6 +24,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useNavigation } from '@react-navigation/native';
 import { useApp } from '#/provider/AppProvider';
 import FileViewer from 'react-native-file-viewer';
+import { pick, types, errorCodes } from '@react-native-documents/picker';
 
 const Import = () => {
   const alert = useAlert();
@@ -33,8 +33,8 @@ const Import = () => {
 
   const pickFile = async () => {
     try {
-      const res = await DocumentPicker.pick({
-        type: [DocumentPicker.types.plainText],
+      const res = await pick({
+        type: [types.plainText],
         allowMultiSelection: false,
       });
 
@@ -56,8 +56,12 @@ const Import = () => {
       alert.success('Бараанууд амжилттай бүртгэгдлээ');
       navigation.goBack();
     } catch (error) {
-      if (!DocumentPicker.isCancel(error)) {
-        console.error('File read error:', error);
+      if (errorCodes.OPERATION_CANCELED) {
+        return;
+      }
+      if (errorCodes.UNABLE_TO_OPEN_FILE_TYPE) {
+        console.log(error);
+        alert.error('Файл нээхэд алдаа гарлаа');
       }
     }
   };
@@ -77,10 +81,18 @@ const Import = () => {
     try {
       await RNFS.writeFile(path, testProducts, 'utf8');
       alert.success('Тест файл амжилттай үүсгэгдлээ');
-      await FileViewer.open(path); // absolute-path-to-my-local-file.
+      if (isIOS) {
+        return await FileViewer.open(path);
+      } else {
+        return await Linking.openURL(
+          'content://com.android.externalstorage.documents/document/primary:Download',
+        );
+      }
     } catch (error) {
-      console.log('Error writing file', error);
-      Alert.alert('Алдаа гарлаа', 'Файл татаж авахад алдаа гарлаа');
+      if (errorCodes.UNABLE_TO_OPEN_FILE_TYPE) {
+        console.log('Error writing file', error);
+        alert.error('Файл нээхэд алдаа гарлаа');
+      }
     }
   };
 
@@ -98,12 +110,20 @@ const Import = () => {
     try {
       alert.success('Загвар файл амжилттай татлаа');
       await RNFS.writeFile(path, templateFile, 'utf8');
-      await FileViewer.open(path); // absolute-path-to-my-local-file.
+
+      if (isIOS) {
+        return await FileViewer.open(path);
+      } else {
+        return await Linking.openURL(
+          'content://com.android.externalstorage.documents/document/primary:Download',
+        );
+      }
     } catch (error) {
-      console.log('Error writing file', error);
-      Alert.alert('Алдаа гарлаа', 'Файл татаж авахад алдаа гарлаа');
+      if (errorCodes.UNABLE_TO_OPEN_FILE_TYPE) {
+        console.log('Error writing file', error);
+        alert.error('Файл нээхэд алдаа гарлаа');
+      }
     }
-    await RNFS.writeFile(path, templateFile, 'utf8');
   };
 
   return (
